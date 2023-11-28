@@ -25,9 +25,12 @@ void Engine::input()
 	{
 		window.close
 	}
-	if (Mouse::isMouseButtonPressed(Mouse::LeftClick))
+	if (Mouse::MouseButtonePressed(Mouse::LeftClick))
 	{
-		
+		for ()
+		{
+			numPoints.rand[25:50];	
+		}
 	}
 }
 void Engine::update(float dtAsSeconds)
