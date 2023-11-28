@@ -20,7 +20,8 @@ Engine::void run()
 
 Engine::RenderWindow m_Window
 {
-  
+  	VideoMode desktop = VideoMode::getDesktopMode();
+    RenderWindow window(desktop, "Particle Viewer",
 }
 
 //vector for Particles
