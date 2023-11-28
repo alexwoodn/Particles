@@ -1,5 +1,6 @@
 #include "Engine.h"
-
+#using namespace sf;
+#using namespace std;
 
 // The Engine constructor
 Engine::Engine();
