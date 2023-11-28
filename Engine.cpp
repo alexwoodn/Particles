@@ -5,7 +5,7 @@
 // The Engine constructor
 Engine::Engine()
 {
-    
+    RenderWindow m_Window(desktop, "Particles", Style::Default);
 }
 // Run will call all the private functions
 void Engine::run()
