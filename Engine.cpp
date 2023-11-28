@@ -41,5 +41,7 @@ void Engine::update(float dtAsSeconds)
 }
 void Engine::draw()
 {
-  
+    window.clear()
+    window.draw(Particles);
+    
 }
