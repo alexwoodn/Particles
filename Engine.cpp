@@ -27,9 +27,14 @@ void Engine::update(float dtAsSeconds)
 {
 	
 }
+
 void Engine::draw()
 {
-	window.clear()
-	window.draw(Particles);
-    
+	m_Window.clear();
+	for (const auto& particle : m_Particles) 
+	{
+		m_Window.draw(particle);
+	}
+
+	m_Window.display();
 }
