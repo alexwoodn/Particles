@@ -3,10 +3,12 @@
 #using namespace std;
 
 // The Engine constructor
-Engine::Engine();
-
+Engine::Engine()
+{
+    
+}
 // Run will call all the private functions
-Engine::void run();
+Engine::void run()
 {
     cout << "Starting Particle unit tests..." << endl;
     Particle p(m_Window, 4, { (int)m_Window.getSize().x / 2, (int)m_Window.getSize().y / 2 });
