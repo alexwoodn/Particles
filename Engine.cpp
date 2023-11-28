@@ -25,6 +25,15 @@ void Engine::input()
 }
 void Engine::update(float dtAsSeconds)
 {
+	if (getTTL() > 0) 
+	{
+		m_particle.update;
+		++ttl
+	}
+	else
+	{
+		ttl.erase()
+	}
 	
 }
 
