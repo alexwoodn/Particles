@@ -2,18 +2,18 @@
 
 
 // The Engine constructor
-	Engine();
+Engine::Engine();
 
-	// Run will call all the private functions
-	void run();
+// Run will call all the private functions
+Engine::void run();
 
 
-RenderWindow m_Window;
+Engine::RenderWindow m_Window;
 
 //vector for Particles
 vector<Particle> m_particles;
 
 // Private functions for internal use only
-void input();
-void update(float dtAsSeconds);
-void draw();
+void Engine::input();
+void Engine::update(float dtAsSeconds);
+void Engine::draw();
