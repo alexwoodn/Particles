@@ -21,7 +21,14 @@ void Engine::run()
 // Private functions for internal use only
 void Engine::input()
 {
-	
+	if (Keyboard::isKeyPressed(Keyboard::Escape)) 
+	{
+		window.close
+	}
+	if (Mouse::isMouseButtonPressed(Mouse::LeftClick))
+	{
+		
+	}
 }
 void Engine::update(float dtAsSeconds)
 {
