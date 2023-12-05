@@ -5,9 +5,12 @@
 // The Engine constructor
 Engine::Engine()
 {
-	VideoMode desktop = VideoMode::getDesktopMode();
-	RenderWindow m_Window(desktop, "Particles", Style::Default);
+	m_Windows.create(VideoMode(800,600), "Particles");
+	cout << "Starting Particle unit tests..." << endl;
+	Particle p(m_Window, 4, { (int)
 }
+
+
 // Run will call all the private functions
 void Engine::run()
 {
@@ -20,15 +23,15 @@ void Engine::run()
 
 // Input function
 void Engine::input() {
-    sf::Event event;
+    Event event;
     while (m_Window.pollEvent(event)) {
         // Handle the Escape key pressed and closed events so your program can exit
-        if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
+        if (event.type == Event::Closed || (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape)) {
             m_Window.close();
         }
 
         // Handle the left mouse button pressed event
-        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+        if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
             // Create 5 particles
             for (int i = 0; i < 5; ++i) {
                 int numPoints = rand() % 26 + 25;  // Random number in the range [25:50]
