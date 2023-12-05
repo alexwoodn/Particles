@@ -18,21 +18,28 @@ void Engine::run()
   
 }
 
-// Private functions for internal use only
-void Engine::input()
-{
-	if (Keyboard::isKeyPressed(Keyboard::Escape)) 
-	{
-		window.close
-	}
-	if (Mouse::MouseButtonePressed(Mouse::LeftClick))
-	{
-		for ()
-		{
-			numPoints.rand[25:50];	
-		}
-	}
+// Input function
+void Engine::input() {
+    sf::Event event;
+    while (m_Window.pollEvent(event)) {
+        // Handle the Escape key pressed and closed events so your program can exit
+        if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
+            m_Window.close();
+        }
+
+        // Handle the left mouse button pressed event
+        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+            // Create 5 particles
+            for (int i = 0; i < 5; ++i) {
+                int numPoints = rand() % 26 + 25;  // Random number in the range [25:50]
+                Particle newParticle(m_Window, numPoints, { event.mouseButton.x, event.mouseButton.y });
+                m_Particles.push_back(newParticle);
+            }
+        }
+    }
 }
+
+
 // Update function
 void Engine::update(float dtAsSeconds) {
     auto it = m_Particles.begin();
