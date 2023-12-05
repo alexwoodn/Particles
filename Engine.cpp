@@ -33,27 +33,35 @@ void Engine::input()
 		}
 	}
 }
-void Engine::update(float dtAsSeconds)
-{
-	if (getTTL() > 0) 
-	{
-		m_particle.update;
-		++ttl
-	}
-	else
-	{
-		ttl.erase()
-	}
-	
+// Update function
+void Engine::update(float dtAsSeconds) {
+    auto it = m_Particles.begin();
+    while (it != m_Particles.end()) {
+        // Loop through m_particles and call update on each Particle in the vector whose ttl has not expired
+        if (it->getTTL() > 0.0) {
+            it->update(dtAsSeconds);
+            ++it;  // increment the iterator
+        } else {
+            // If a particle's ttl has expired, erase it from the vector
+            it = m_Particles.erase(it);
+            // erase returns an iterator that points to the next element after deletion, or end if it is the end of the vector
+        }
+    }
 }
 
-void Engine::draw()
-{
-	m_Window.clear();
-	for (const auto& particle : m_Particles) 
-	{
-		m_Window.draw(particle);
-	}
 
-	m_Window.display();
+// Draw function
+void Engine::draw() {
+    // clear the window
+    m_Window.clear();
+
+    // Loop through each Particle in m_Particles
+    for (const auto& particle : m_Particles) {
+        // Pass each element into m_Window.draw()
+        particle.draw(m_Window);
+    }
+
+    // display the window
+    m_Window.display();
 }
+
