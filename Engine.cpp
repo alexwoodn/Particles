@@ -4,8 +4,10 @@
 
 // The Engine constructor
 Engine::Engine()
-    : m_Window(VideoMode::getDesktopMode(), "Particle System"), m_particles()
-{}
+{
+	m_Window.create(VideoMode::getDesktopMode(), "Particles");
+}
+
 
 
 // Run will call all the private functions
@@ -30,21 +32,23 @@ void Engine::run()
 }
 
 // Input function
-void Engine::input() {
+void Engine::input()
+{
     Event event;
-    while (m_Window.pollEvent(event)) {
-        // Handle the Escape key pressed and closed events
-        if (event.type == Event::Closed || (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape)) {
+    while (m_Window.pollEvent(event))
+    {
+        if (event.type == Event::Closed || (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape))
+        {
             m_Window.close();
         }
-
-        // Handle the left mouse button pressed event
-        if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
+        else if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left)
+        {
             // Create 5 particles
-            for (int i = 0; i < 5; ++i) {
-                int numPoints = rand() % 26 + 25;  // Random number in the range [25:50]
-                Particle newParticle(m_Window, numPoints, { event.mouseButton.x, event.mouseButton.y });
-                m_particles.push_back(newParticle);
+            for (int i = 0; i < 5; ++i)
+            {
+                int numPoints = rand() % 26 + 25; // Random number in the range [25:50]
+                Vector2i mousePos = Mouse::getPosition(m_Window);
+                m_particles.push_back(Particle(m_Window, numPoints, {mousePos.x, mousePos.y}));
             }
         }
     }
