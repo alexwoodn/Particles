@@ -49,27 +49,76 @@ namespace Matrices
 
 	Matrix operator*(const Matrix& a, const Matrix& b)
 	{
-		return Matrix(0, 0); 
+		int aRows = a.getRows();
+		int aCols = a.getCols();
+		int bRows = b.getRows();
+		int bCols = b.getCols();
+
+		// Check if multiplication is possible
+		if (aCols != bRows) 
+		{
+			throw runtime_error("Error: dimensions must agree");
+		}
+
+		Matrix result(aRows, bCols);
+
+		for (int i = 0; i < aRows; i++) {
+			for (int j = 0; j < bCols; j++) {
+				double sum = 0.0;
+				for (int k = 0; k < aCols; k++) {
+					sum += a(i, k) * b(k, j);
+				}
+				result(i, j) = sum;
+			}
+		}
+
+		return result;
 	}
 	///Matrix comparison.  See description.
 	///usage:  a == b
 	bool operator==(const Matrix& a, const Matrix& b)
 	{
-		return false; 
+		if (a.getRows() != b.getRows() || a.getCols() != b.getCols()) {
+			return false;
+		}
+
+		for (int i = 0; i < a.getRows(); i++) {
+			for (int j = 0; j < a.getCols(); j++) {
+				if (abs(a(i, j) - b(i, j)) >= 0.001) {
+					return false;
+				}
+			}
+		}
+
+		return true; // Matrices are equal
 	}
 
 	///Matrix comparison.  See description.
 	///usage:  a != b
 	bool operator!=(const Matrix& a, const Matrix& b)
 	{
-		return false; 
+		return !(a == b);
 	}
+
 
 	///Output matrix.
 	///Separate columns by ' ' and rows by '\n'
 	ostream& operator<<(ostream& os, const Matrix& a)
 	{
+		int rows = a.getRows();
+		int cols = a.getCols();
+
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				os << setw(8) << a(i, j);
+				if (j < cols - 1) {
+					os << ' ';
+				}
+			}
+			os << '\n';
+		}
 		return os; 
 	}
+
 
 }
