@@ -63,7 +63,7 @@ void Engine::update(float dtAsSeconds) {
             it->update(dtAsSeconds);
             ++it;  
         } else {
-            it = m_Particles.erase(it);
+            it = m_particles.erase(it);
         }
     }
 }
