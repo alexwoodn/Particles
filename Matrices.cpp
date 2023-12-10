@@ -122,3 +122,22 @@ namespace Matrices
 
 
 }
+RotationMatrix::RotationMatrix(double theta) : Matrix(2, 2) {
+    this->operator()(0, 0) = cos(theta);
+    this->operator()(0, 1) = -sin(theta);
+    this->operator()(1, 0) = sin(theta);
+    this->operator()(1, 1) = cos(theta);
+}
+ScalingMatrix::ScalingMatrix(double scale) : Matrix(2, 2) {
+    this->operator()(0, 0) = scale;
+    this->operator()(0, 1) = 0;
+    this->operator()(1, 0) = 0;
+    this->operator()(1, 1) = scale;
+}
+TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2, nCols) {
+    for (int col = 0; col < nCols; ++col) {
+        this->operator()(0, col) = xShift;
+        this->operator()(1, col) = yShift;
+    }
+}
+
