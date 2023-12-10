@@ -33,7 +33,7 @@ void Engine::run()
 void Engine::input() {
     Event event;
     while (m_Window.pollEvent(event)) {
-        // Handle the Escape key pressed and closed events so your program can exit
+        // Handle the Escape key pressed and closed events
         if (event.type == Event::Closed || (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape)) {
             m_Window.close();
         }
@@ -44,7 +44,7 @@ void Engine::input() {
             for (int i = 0; i < 5; ++i) {
                 int numPoints = rand() % 26 + 25;  // Random number in the range [25:50]
                 Particle newParticle(m_Window, numPoints, { event.mouseButton.x, event.mouseButton.y });
-                m_Particles.push_back(newParticle);
+                m_particles.push_back(newParticle);
             }
         }
     }
@@ -53,16 +53,13 @@ void Engine::input() {
 
 // Update function
 void Engine::update(float dtAsSeconds) {
-    auto it = m_Particles.begin();
-    while (it != m_Particles.end()) {
-        // Loop through m_particles and call update on each Particle in the vector whose ttl has not expired
+    auto it = m_particles.begin();
+    while (it != m_particles.end()) {
         if (it->getTTL() > 0.0) {
             it->update(dtAsSeconds);
-            ++it;  // increment the iterator
+            ++it;  
         } else {
-            // If a particle's ttl has expired, erase it from the vector
             it = m_Particles.erase(it);
-            // erase returns an iterator that points to the next element after deletion, or end if it is the end of the vector
         }
     }
 }
@@ -73,9 +70,7 @@ void Engine::draw() {
     // clear the window
     m_Window.clear();
 
-    // Loop through each Particle in m_Particles
-    for (const auto& particle : m_Particles) {
-        // Pass each element into m_Window.draw()
+    for (const auto& particle : m_particles) {
         particle.draw(m_Window);
     }
 
