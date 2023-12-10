@@ -75,7 +75,7 @@ void Engine::draw() {
     m_Window.clear();
 
     for (const auto& particle : m_particles) {
-        particle.draw(m_Window);
+        particle.draw(m_Window,RenderStates::Default);
     }
 
     // display the window
