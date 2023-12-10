@@ -4,11 +4,8 @@
 
 // The Engine constructor
 Engine::Engine()
-{
-	m_Windows.create(VideoMode(800,600), "Particles");
-	cout << "Starting Particle unit tests..." << endl;
-	Particle p(m_Window, 4, { (int)
-}
+    : m_Window(VideoMode::getDesktopMode(), "Particle System"), m_particles()
+{}
 
 
 // Run will call all the private functions
@@ -19,6 +16,17 @@ void Engine::run()
 	p.unitTests();
 	cout << "Unit tests complete.  Starting engine..." << endl;
   
+	Clock clock;
+
+   	 while (m_Window.isOpen())
+    	{
+        	Time dt = clock.restart();
+       		float dtAsSeconds = dt.asSeconds();
+
+       		input();
+        	update(dtAsSeconds);
+        	draw();
+   	}
 }
 
 // Input function
