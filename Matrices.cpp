@@ -121,7 +121,7 @@ namespace Matrices
 	}
 
 
-}
+
 RotationMatrix::RotationMatrix(double theta) : Matrix(2, 2) {
     this->operator()(0, 0) = cos(theta);
     this->operator()(0, 1) = -sin(theta);
@@ -140,4 +140,4 @@ TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : 
         this->operator()(1, col) = yShift;
     }
 }
-
+}
